@@ -1,7 +1,4 @@
 #Justin Sciortino
-#420-LCU Computer Programming, Section
-# S. Hilal
-#Assignment 3
 
 fp = open('books.txt')
 Books = {}
@@ -9,7 +6,6 @@ Books = {}
 for line in fp.readlines():
     line=line.strip('\n')
     book_record = line.split(",")
-    #print(book_record)
     book_dict = {}
     book_dict['author'] = book_record[1]
     book_dict['language'] = book_record[2]
@@ -19,11 +15,7 @@ for line in fp.readlines():
     book_title = book_record[0]
     Books.setdefault((book_title), book_dict)
 fp.close()
-
 print(Books)
-#print('Goodreads: 100 Books You Should Read in a Lifetime')
-#for k in sorted(Books):
-   # print(('{:50s} {:30s} {:30s} {:30s} {:20d}'.format(k,Books[k]['author'], Books[k]['language'], Books[k]['type'], Books[k]['sold'])))
 
 menu = """1- How many different languages are there? Print a numbered list of languages.
 2- What language has the most books? (Hint: create a new small dictionary to count books in each language)
@@ -39,7 +31,7 @@ menu = """1- How many different languages are there? Print a numbered list of la
 11- Exit
 Select an option:"""
 
-####################################################################
+
 book_types = {}           #Dictionary for types(key) and the total amount sold per type(value)
 for k in Books.values():
     types_books = k['type']
@@ -48,7 +40,7 @@ for k in Books.values():
         book_types[types_books] += copies
     else:
         book_types[types_books] = copies
-####################################################################
+
 dict_authors = {}      #Dictionary for authors(key) and the amount of books authored(value)
 for k in Books.values():
     author = k['author']
@@ -57,7 +49,7 @@ for k in Books.values():
         dict_authors[author] = count5
     else:
         dict_authors[author] += count5
-####################################################################
+
 author_sold = {}         #Dictionary for authors(key) and the total amount of copies sold(value)
 for k in Books.values():
     author = k['author']
@@ -66,7 +58,7 @@ for k in Books.values():
         author_sold[author] += copies
     else:
         author_sold[author] = copies
-####################################################################
+
 dict_lang = {}          #Dictionary for languages(key) and the amount of languages in the top 100 (value)
 for k in Books.values():
     lang = k['language']
@@ -75,7 +67,7 @@ for k in Books.values():
         dict_lang[lang] = count2
     else:
         dict_lang[lang] += count2
-#####################################################################
+
 
 option = 0
 while option != 11:
@@ -151,7 +143,7 @@ while option != 11:
     elif option == 9:
         count9 = 0
         u = 1     #u is used for the numbered list
-        for booktype in sorted(book_types, key=book_types.get, reverse=True):     #reverse = True will make it in decreasing order rather than increasing
+        for booktype in sorted(book_types, key=book_types.get, reverse=True):     
             if count9 < 5:    #Limits the amount printed to only 5 things
                 print('{} {} {}:{}'.format(u,')',booktype,book_types[booktype]))
                 count9 += 1    #Limits the amount printed to only 5 things
@@ -160,7 +152,7 @@ while option != 11:
     elif option == 10:
         count10 = 0
         top5dict = {}
-        for booktype in sorted(book_types, key = book_types.get, reverse = True):    #reverse = True will make it in decreasing order rather than increasing
+        for booktype in sorted(book_types, key = book_types.get, reverse = True):    
             if len(top5dict) !=5:   #checks to make sure that they are only 5 types of books, the len function will count the amount of keys
                 top5dict[booktype] = book_types[booktype]   #dictionary of the top 5 books in decreasing order (highest to lowest)
 
